@@ -1,0 +1,103 @@
+
+.app {
+    padding: 30px;
+
+    &__container {
+        height: 100%;
+        width: 100%;
+    }
+
+    &__name {
+        text-align: center;
+        color: $color-blue-dark;
+    }
+}
+
+.add {
+    // flex-direction: column;
+    margin-bottom: 60px;
+    &__input-container {
+        margin-bottom: 40px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__input-name {
+        width: 100%;
+    }
+
+    &__input {
+        width: 70%;
+        border-radius: 10px 0 0 10px;
+    }
+
+    &__button {
+        width: 30%;
+        border-radius: 0 10px 10px 0;
+    }
+}
+
+.draw {
+    &__button {
+        margin: 0 auto;
+        margin-bottom: 40px;
+
+        &:hover {
+            margin-bottom: 36px;
+        }
+    }
+}
+
+.days {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    
+    }
+
+    &__item-wrapper {
+        box-shadow: $box-shadow-natural;
+        border-radius: 10px;
+    }
+}
+
+.meal {
+    &__table {
+        width: 100%;
+        border: 5px solid $color-purple-darker;
+        padding: 10px;
+        border-radius: 0 0 10px 10px;
+        background-color: $color-white;
+    }
+
+    &__table-name {
+        border: 5px solid $color-blue-dark;
+        background-color: $color-blue-dark;
+        border-bottom: none;
+        border-radius: 10px 10px 0 0;
+        font-size: $font-size-xl;
+        font-weight: 600;
+        color: $color-white;
+        padding: 5px 0;
+    }
+
+    &__type {
+    }
+
+    &__table-cell {
+        padding: 3px 0;
+        vertical-align: center;
+    }
+
+    &__name {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: $font-size-l;
+        letter-spacing: 2px;
+        color: $color-blue-dark;
+    }
+
+    &__dish {
+        text-align: center;
+    }
+}

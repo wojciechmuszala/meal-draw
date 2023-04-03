@@ -5,21 +5,237 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;0,700;0,900;1,200;1,400&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="/style/css/main.css" />
     </head>
     <body>
         <section class="app">
-            <h1 class="app__name">Meal draw</h1>
-            <div class="add">
-                <input class="add__input" type="text" />
-                <button class="add__button btn btn__primary">
-                    Add a new dish
-                </button>
-            </div>
-            <div class="day_container">
-                <div class="dish__container dsih__breakfast"></div>
-                <div class="dish__container dish__brunch"></div>
-                <div class="dish__container dish__lunch"></div>
-                <div class="dish__container dish__supper"></div>
+            <div class="app__container">
+                <h1 class="app__name">Meal draw</h1>
+                <div class="add">
+                    <div class="add__input-container">
+                        <label for="enter-new-dish" class="add__input-name"
+                        >Enter new dish:</label
+                        >
+                        <input
+                            id="enter-new-dish"
+                            class="add__input"
+                            type="text" />
+                        <button class="add__button btn btn__primary btn__input">Add</button>
+                    </div>
+                </div>
+                <div class="draw">
+                    <button class="draw__button btn btn__secondary">Draw dishes</button>
+                    <div class="days__container">
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Monday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Tuesday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Wednesday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Thursday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Friday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Saturday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="monday" class="days__item-wrapper">
+                            <table class="meal__table">
+                                <caption class="meal__table-name">
+                                    Sunday
+                                </caption>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">
+                                        Breakfast
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        diddddsh
+                                    </td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Lunch</td>
+                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                </tr>
+                                <tr class="meal__type meal__type--breakfast">
+                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didfdffssdfsh
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </body>

@@ -1,14 +1,32 @@
 // Import abstracts
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
 
 // Import base
-@import 'base/reset';
-@import 'base/typography';
+@import "base/base";
+@import "base/reset";
+@import "base/typography";
 
 // Import components
-@import 'components/buttons';
+@import "components/buttons";
 
 // Import layout
-@import 'layout/layout';
+@import "layout/layout";
+
+// ----- Responisive
+// Import abstracts
+// @import "responsive/abstracts/variables-responsive";
+// @import "responsive/abstracts/functions-responsive";
+// @import "responsive/abstracts/mixins-responsive";
+
+// Import base
+@import "responsive/base-responsive/base-responsive";
+// @import "responsive/base-responsive/reset-responsive";
+// @import "responsive/base-responsive/typography-responsive";
+
+// Import components
+@import "responsive/components-responsive/buttons-responsive";
+
+// Import layout
+@import "responsive/layout-responsive/layout-responsive";
