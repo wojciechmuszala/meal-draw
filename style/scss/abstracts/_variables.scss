@@ -1,20 +1,10 @@
 //colors
-// $color-black: #000;
 $color-black: #000;
-$color-purple: #9a4c68;
-$color-purple-dark: #903749;
-$color-purple-darker: #2b2e4a;
-$color-blue: #70a2d7;
-// $color-purple: #4a4bb9;
-// $color-purple-dark: #2e1d4a;
-// $color-purple-darker: #1f1020;
-// $color-blue: #70a2d7;
 $color-grey: #777;
 $color-white: #fff;
+$color-red: #ac1b1b;
+$color-dark: #222;
 
-$color-blue-light: #efb3fd;
-// $color-blue-dark: #2b2e4a;
-$color-blue-dark: #3c0952;
 
 //fonts
 $font-base: "Poppins", sans-serif;
@@ -30,4 +20,4 @@ $font-size-xxxl: 44px;
 
 //styles
 $box-shadow-natural: 3px 3px 12px -3px rgba(66, 68, 90, 1);
-
+$box-shadow-natural-hover: 3px 3px 20px -3px rgba(66, 68, 90, 1);

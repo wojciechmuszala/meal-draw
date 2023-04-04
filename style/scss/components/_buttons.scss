@@ -4,16 +4,16 @@
     padding: 12px 24px;
 
     &__primary {
-        background-color: $color-blue-dark;
-        border: 1px solid $color-blue-dark;
+        background-color: $color-dark;
+        border: 1px solid $color-dark;
         box-shadow: $box-shadow-natural;
         color: $color-white;
         text-transform: uppercase;
     }
 
     &__secondary {
-        background-color: rgb(172, 27, 27);
-        border: 1px solid rgb(126, 37, 37);
+        background-color: $color-red;
+        border: 1px solid $color-red;
         box-shadow: $box-shadow-natural;
         font-size: 30px;
         color: $color-white;
@@ -23,8 +23,12 @@
 
         &:hover {
             letter-spacing: 3.3px;
-            padding: 14px 24px;
-            box-shadow: 3px 3px 20px -3px rgba(66, 68, 90, 1);
+            box-shadow: $box-shadow-natural-hover;
+        }
+
+        &:active {
+            letter-spacing: 2.5px;
+            box-shadow: $box-shadow-natural;
         }
     }
 

@@ -1,13 +1,14 @@
 body {
   max-width: 1440px;
   margin: 0 auto;
-  background-color: #efb3fd;
 }
 
-input[type="text"] {
+input,
+select {
   font-size: 16px;
-  padding: 5px 8px;
-  border: 1px solid #3c0952;
+  padding: 8px 12px;
+  border: 1px solid #222;
+  background-color: #fff;
 }
 
 * {
@@ -62,8 +63,8 @@ h3 {
 }
 
 .btn__primary {
-  background-color: #3c0952;
-  border: 1px solid #3c0952;
+  background-color: #222;
+  border: 1px solid #222;
   -webkit-box-shadow: 3px 3px 12px -3px #42445a;
           box-shadow: 3px 3px 12px -3px #42445a;
   color: #fff;
@@ -72,7 +73,7 @@ h3 {
 
 .btn__secondary {
   background-color: #ac1b1b;
-  border: 1px solid #7e2525;
+  border: 1px solid #ac1b1b;
   -webkit-box-shadow: 3px 3px 12px -3px #42445a;
           box-shadow: 3px 3px 12px -3px #42445a;
   font-size: 30px;
@@ -85,9 +86,14 @@ h3 {
 
 .btn__secondary:hover {
   letter-spacing: 3.3px;
-  padding: 14px 24px;
   -webkit-box-shadow: 3px 3px 20px -3px #42445a;
           box-shadow: 3px 3px 20px -3px #42445a;
+}
+
+.btn__secondary:active {
+  letter-spacing: 2.5px;
+  -webkit-box-shadow: 3px 3px 12px -3px #42445a;
+          box-shadow: 3px 3px 12px -3px #42445a;
 }
 
 .btn__input {
@@ -111,7 +117,7 @@ h3 {
 
 .app__name {
   text-align: center;
-  color: #3c0952;
+  color: #222;
 }
 
 .add {
@@ -127,27 +133,36 @@ h3 {
       flex-wrap: wrap;
 }
 
+.add__input-wrapper {
+  width: 40%;
+  position: relative;
+}
+
 .add__input-name {
-  width: 100%;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: #fff;
+  font-size: 12px;
+  padding: 0 3px;
 }
 
 .add__input {
   width: 70%;
+}
+
+.add__input--first {
   border-radius: 10px 0 0 10px;
 }
 
 .add__button {
-  width: 30%;
+  width: 20%;
   border-radius: 0 10px 10px 0;
 }
 
 .draw__button {
   margin: 0 auto;
   margin-bottom: 40px;
-}
-
-.draw__button:hover {
-  margin-bottom: 36px;
 }
 
 .days__container {
@@ -169,15 +184,15 @@ h3 {
 
 .meal__table {
   width: 100%;
-  border: 5px solid #2b2e4a;
+  border: 5px solid #222;
   padding: 10px;
   border-radius: 0 0 10px 10px;
   background-color: #fff;
 }
 
 .meal__table-name {
-  border: 5px solid #3c0952;
-  background-color: #3c0952;
+  border: 5px solid #222;
+  background-color: #222;
   border-bottom: none;
   border-radius: 10px 10px 0 0;
   font-size: 24px;
@@ -196,7 +211,7 @@ h3 {
   text-transform: uppercase;
   font-size: 20px;
   letter-spacing: 2px;
-  color: #3c0952;
+  color: #222;
 }
 
 .meal__dish {
@@ -216,11 +231,14 @@ h3 {
   }
   .app__name {
     text-align: center;
-    color: #3c0952;
+    color: #222;
   }
   .add__input-container {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
+  }
+  .add__input {
+    width: 100%;
   }
   .draw__button {
     margin-bottom: 50px;

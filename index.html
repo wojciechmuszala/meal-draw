@@ -18,18 +18,40 @@
                 <h1 class="app__name">Meal draw</h1>
                 <div class="add">
                     <div class="add__input-container">
-                        <label for="enter-new-dish" class="add__input-name"
-                        >Enter new dish:</label
-                        >
-                        <input
-                            id="enter-new-dish"
-                            class="add__input"
-                            type="text" />
-                        <button class="add__button btn btn__primary btn__input">Add</button>
+                        <div class="add__input-wrapper">
+                            <label
+                                for="enter-new-dish-name"
+                                class="add__input-name"
+                                >Dish name:</label
+                            >
+                            <input
+                                id="enter-new-dish-name"
+                                class="add__input add__input--first"
+                                type="text"
+                                placeholder="scrambled eggs" />
+                        </div>
+                        <div class="add__input-wrapper">
+                            <label
+                                for="enter-new-dish-type"
+                                class="add__input-name"
+                                >Dish type:</label
+                            >
+                            <select id="enter-new-dish-type" class="add__input">
+                                <option value="breakfast">Breakfast</option>
+                                <option value="brunch">Brunch</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="supper">Supper</option>
+                            </select>
+                        </div>
+                        <button class="add__button btn btn__primary btn__input">
+                            Add
+                        </button>
                     </div>
                 </div>
                 <div class="draw">
-                    <button class="draw__button btn btn__secondary">Draw dishes</button>
+                    <button class="draw__button btn btn__secondary">
+                        Draw dishes
+                    </button>
                     <div class="days__container">
                         <div id="monday" class="days__item-wrapper">
                             <table class="meal__table">
@@ -40,20 +62,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>
@@ -69,20 +101,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>
@@ -98,20 +140,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>
@@ -127,20 +179,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>
@@ -156,20 +218,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>
@@ -185,20 +257,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>
@@ -214,20 +296,30 @@
                                     <td class="meal__table-cell meal__name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">didsh</td>
+                                    <td class="meal__table-cell meal__dish">
+                                        didsh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Brunch</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Brunch
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         diddddsh
                                     </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Lunch</td>
-                                    <td class="meal__table-cell meal__dish">dissfdh</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Lunch
+                                    </td>
+                                    <td class="meal__table-cell meal__dish">
+                                        dissfdh
+                                    </td>
                                 </tr>
                                 <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">Supper</td>
+                                    <td class="meal__table-cell meal__name">
+                                        Supper
+                                    </td>
                                     <td class="meal__table-cell meal__dish">
                                         didfdffssdfsh
                                     </td>

@@ -1,13 +1,12 @@
 body {
     max-width: 1440px;
     margin: 0 auto;
-    background-color: $color-blue-light;
 }
 
-input[type="text"] {
+input,
+select {
     font-size: $font-size-m;
-    padding: 5px 8px;
-    border: 1px solid $color-blue-dark;
+    padding: 8px 12px;
+    border: 1px solid $color-dark;
+    background-color: #fff;
 }
-
-
