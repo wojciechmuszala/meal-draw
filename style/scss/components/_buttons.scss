@@ -9,6 +9,17 @@
         box-shadow: $box-shadow-natural;
         color: $color-white;
         text-transform: uppercase;
+        transition: 0.2s all ease;
+
+         &:hover {
+            letter-spacing: 1.5px;
+            box-shadow: $box-shadow-natural-hover;
+        }
+
+        &:active {
+            letter-spacing: 2.5px;
+            background-color: #888;
+        }
     }
 
     &__secondary {

@@ -11,6 +11,7 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;0,700;0,900;1,200;1,400&display=swap"
             rel="stylesheet" />
         <link rel="stylesheet" href="/style/css/main.css" />
+        <script src="scripts/main.js" defer></script>
     </head>
     <body>
         <section class="app">
@@ -26,7 +27,7 @@
                             >
                             <input
                                 id="enter-new-dish-name"
-                                class="add__input add__input--first"
+                                class="add__input add__input--input"
                                 type="text"
                                 placeholder="scrambled eggs" />
                         </div>
@@ -36,14 +37,16 @@
                                 class="add__input-name"
                                 >Dish type:</label
                             >
-                            <select id="enter-new-dish-type" class="add__input">
+                            <select
+                                id="enter-new-dish-type"
+                                class="add__input add__input--select">
                                 <option value="breakfast">Breakfast</option>
                                 <option value="brunch">Brunch</option>
                                 <option value="lunch">Lunch</option>
                                 <option value="supper">Supper</option>
                             </select>
                         </div>
-                        <button class="add__button btn btn__primary btn__input">
+                        <button id="add-new-dish-button" class="add__button btn btn__primary btn__input">
                             Add
                         </button>
                     </div>
