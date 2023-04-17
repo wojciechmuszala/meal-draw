@@ -12,7 +12,7 @@
     }
 
     .add {
-        &__input-container {
+        &__container {
             max-width: 600px;
             margin: 0 auto;
         }
@@ -37,37 +37,42 @@
         }
     }
 
-    .days {
+    .cooking-plan {
         &__container {
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        &__item-wrapper {
+        &__item {
             min-width: 400px;
         }
-    }
 
-    .meal {
         &__table {
         }
 
-        &__table-name {
+        &__day-name {
         }
 
-        &__type {
+        &__meal-type {
         }
 
         &__table-cell {
         }
 
-        &__name {
+        &__meal-name {
             font-size: 25px;
             text-align: vertical;
         }
 
         &__dish {
         }
+    }
+
+    .dish-list {
+        // &__show {
+        //     display: none;
+        // }
+
     }
 }

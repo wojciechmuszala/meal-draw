@@ -18,7 +18,7 @@
             <div class="app__container">
                 <h1 class="app__name">Meal draw</h1>
                 <div class="add">
-                    <div class="add__input-container">
+                    <div class="add__container">
                         <div class="add__input-wrapper">
                             <label
                                 for="enter-new-dish-name"
@@ -46,290 +46,392 @@
                                 <option value="supper">Supper</option>
                             </select>
                         </div>
-                        <button id="add-new-dish-button" class="add__button btn btn__primary btn__input">
+                        <button
+                            id="add-new-dish-button"
+                            class="add__button btn btn__primary btn__input">
                             Add
                         </button>
+                        <div class="add__status-info status-info"></div>
                     </div>
                 </div>
                 <div class="draw">
                     <button class="draw__button btn btn__secondary">
                         Draw dishes
                     </button>
-                    <div class="days__container">
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                    <div class="cooking-plan__container">
+                        <div class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Monday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--brunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--lunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--supper">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                        <div class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Tuesday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--brunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--lunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--supper">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                        <div class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Wednesday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--brunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--lunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--supper">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                        <div class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Thursday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--brunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--lunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--supper">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                        <div id="monday" class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Friday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--brunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--lunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--supper">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                        <div id="monday" class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Saturday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--brunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--lunch">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--supper">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div id="monday" class="days__item-wrapper">
-                            <table class="meal__table">
-                                <caption class="meal__table-name">
+                        <div id="monday" class="cooking-plan__item">
+                            <table class="cooking-plan__table">
+                                <caption class="cooking-plan__day-name">
                                     Sunday
                                 </caption>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Breakfast
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Brunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         diddddsh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Lunch
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         dissfdh
                                     </td>
                                 </tr>
-                                <tr class="meal__type meal__type--breakfast">
-                                    <td class="meal__table-cell meal__name">
+                                <tr
+                                    class="cooking-plan__meal cooking-plan__meal--breakfast">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__meal-name">
                                         Supper
                                     </td>
-                                    <td class="meal__table-cell meal__dish">
+                                    <td
+                                        class="cooking-plan__table-cell cooking-plan__dish">
                                         didfdffssdfsh
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
+                </div>
+                <div class="dish-list">
+                    <button class="dish-list__show btn btn__oval"><</button>
+                    <ul id="dish-list-breakfast" class="dish-list__list">
+                        <li class="dish-list__title">Breakfasts</li>
+                    </ul>
+                    <ul id="dish-list-brunch" class="dish-list__list">
+                        <li class="dish-list__title">Brunches</li>
+                    </ul>
+                    <ul id="dish-list-lunch" class="dish-list__list">
+                        <li class="dish-list__title">Lunches</li>
+                    </ul>
+                    <ul id="dish-list-supper" class="dish-list__list">
+                        <li class="dish-list__title">Suppers</li>
+                    </ul>
                 </div>
             </div>
         </section>

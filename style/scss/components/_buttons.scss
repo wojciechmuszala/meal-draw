@@ -51,4 +51,12 @@
         box-shadow: none;
         text-transform: none;
     }
+
+    &__oval {
+        width: 50px;
+        height: 100px;
+        background-color: $color-red;
+        border-radius: 100vmax 0 0 100vmax;
+        border: 1px solid $color-dark;
+    }
 }
