@@ -1,29 +1,47 @@
 const showDishListButton = document.querySelector(".dish-list__show");
 const dishListContainerElement = document.querySelector(".dish-list");
+const getButton = document.getElementById("draw-button");
+const MATH_RANDOM_MULTIPLIER = 10000000000000000;
+const indexedDB =
+    window.indexedDB ||
+    window.mozIndexedDB ||
+    window.webkitIndexedDB ||
+    window.msIndexedDB ||
+    window.shimIndexedDB;
 
 let db;
+const dbRequest = indexedDB.open("DishesDatabase", 1);
+let dishesArray;
+dishes = [];
 
-const dbRequest = indexedDB.open("Dishes", 1);
+const BREAKFAST_TYPE = "breakfast";
+const BRUCH_TYPE = "brunch";
+const LUNCH_TYPE = "lunch";
+const SUPPER_TYPE = "supper";
 
-dbRequest.onsuccess = function (event) {
-    db = event.target.result;
-};
-
-dbRequest.onupgradeneeded = function (event) {
-    db = event.target.result;
-
-    const objStore = db.createObjectStore("dishes", { keyPath: "id" });
-
-    objStore.transaction.oncomplete = function (event) {
-        const dishesStore = db
-            .transaction("dishes", "readwrite")
-            .objectStore("dishes");
+const dbPromise = new Promise((resolve, reject) => {
+    dbRequest.onerror = function (event) {
+        reject(console.error(event));
     };
-};
 
-dbRequest.onerror = function (event) {
-    console.log("Error");
-};
+    dbRequest.onupgradeneeded = function (event) {
+        // db = event.target.result;
+        db = dbRequest.result;
+        const objStore = db.createObjectStore("dishes", { keyPath: "id" });
+
+        objStore.createIndex("type", ["type"], { unique: false });
+        objStore.createIndex("name_and_type", ["name", "type"], {
+            unique: false,
+        });
+    };
+
+    dbRequest.onsuccess = function (event) {
+        // db = event.target.result;
+        db = dbRequest.result;
+
+        resolve(db);
+    };
+});
 
 showDishListButton.addEventListener("click", () => {
     dishListContainerElement.classList.toggle("dish-list--active");
@@ -58,8 +76,6 @@ class StatusHandler {
     }
 }
 class DishList {
-    dishes = [];
-
     constructor() {
         this.addDishButton = document.getElementById("add-new-dish-button");
     }
@@ -82,7 +98,7 @@ class DishList {
 
         const newDish = new Dish(dishName, dishType);
 
-        const isDishOnList = this.dishes.some((dishOnList) => {
+        const isDishOnList = dishes.some((dishOnList) => {
             return JSON.stringify(dishOnList) === JSON.stringify(newDish);
         });
         if (isDishOnList) {
@@ -93,15 +109,16 @@ class DishList {
             return;
         }
 
-        this.dishes.push(newDish);
+        dishes.push(newDish);
         statusHandler.add("success", "The dish has been added to the list!");
 
-        const dishesStore = db
+        const objStore = db
             .transaction("dishes", "readwrite")
             .objectStore("dishes");
-        dishesStore.add({
-            id: Math.random(),
-            name: newDish,
+
+        objStore.add({
+            id: Math.random() * MATH_RANDOM_MULTIPLIER,
+            name: dishName,
             type: dishType,
         });
 
@@ -114,9 +131,60 @@ class DishList {
     }
 }
 
+async function renderDishesFromDBToList() {
+    try {
+        db = await dbPromise;
+        const objStore = db
+            .transaction("dishes", "readwrite")
+            .objectStore("dishes");
+        const typeIndex = objStore.index("type");
+        const typeQueryArray = [
+            typeIndex.getAll([BREAKFAST_TYPE]),
+            typeIndex.getAll([BRUCH_TYPE]),
+            typeIndex.getAll([LUNCH_TYPE]),
+            typeIndex.getAll([SUPPER_TYPE]),
+        ];
+
+        for (const typeQuery of typeQueryArray) {
+            typeQuery.onsuccess = function () {
+
+                typeQuery.result.forEach((dish) => {
+                    const newDish = new Dish(dish.name, dish.type);
+
+                    const isDishOnList = dishes.some((dishOnList) => {
+                        return (
+                            JSON.stringify(dishOnList) ===
+                            JSON.stringify(newDish)
+                        );
+                    });
+                    if (isDishOnList) {
+                        return;
+                    }
+
+                    dishes.push(newDish);
+
+                    const newDishElement = document.createElement("li");
+                    newDishElement.classList.add("dish-list__item");
+                    newDishElement.innerHTML = newDish.name;
+                    let dishListElement = document.getElementById(
+                        `dish-list-${newDish.type}`
+                    );
+                    dishListElement.append(newDishElement);
+                });
+            };
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const dishList = new DishList();
 
 dishList.addDishButton.addEventListener(
     "click",
     dishList.addNewDish.bind(dishList)
 );
+
+// getButton.addEventListener("click", renderDishesFromDBToList);
+
+renderDishesFromDBToList();
