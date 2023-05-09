@@ -1,51 +1,15 @@
-const showDishListButton = document.querySelector(".dish-list__show");
-const dishListContainerElement = document.querySelector(".dish-list");
-const getButton = document.getElementById("draw-button");
-const MATH_RANDOM_MULTIPLIER = 10000000000000000;
-const indexedDB =
-    window.indexedDB ||
-    window.mozIndexedDB ||
-    window.webkitIndexedDB ||
-    window.msIndexedDB ||
-    window.shimIndexedDB;
-
+import * as dishListDB from "./dishListDB.js";
 let db;
-const dbRequest = indexedDB.open("DishesDatabase", 1);
-let dishesArray;
-dishes = [];
 
 const BREAKFAST_TYPE = "breakfast";
 const BRUCH_TYPE = "brunch";
 const LUNCH_TYPE = "lunch";
 const SUPPER_TYPE = "supper";
+const MATH_RANDOM_MULTIPLIER = 10000000000000000;
 
-const dbPromise = new Promise((resolve, reject) => {
-    dbRequest.onerror = function (event) {
-        reject(console.error(event));
-    };
+const getButton = document.getElementById("draw-button");
 
-    dbRequest.onupgradeneeded = function (event) {
-        // db = event.target.result;
-        db = dbRequest.result;
-        const objStore = db.createObjectStore("dishes", { keyPath: "id" });
-
-        objStore.createIndex("type", ["type"], { unique: false });
-        objStore.createIndex("name_and_type", ["name", "type"], {
-            unique: false,
-        });
-    };
-
-    dbRequest.onsuccess = function (event) {
-        // db = event.target.result;
-        db = dbRequest.result;
-
-        resolve(db);
-    };
-});
-
-showDishListButton.addEventListener("click", () => {
-    dishListContainerElement.classList.toggle("dish-list--active");
-});
+let dishes = [];
 
 class Dish {
     constructor(name, type) {
@@ -78,6 +42,12 @@ class StatusHandler {
 class DishList {
     constructor() {
         this.addDishButton = document.getElementById("add-new-dish-button");
+        this.showButton = document.querySelector(".dish-list__show");
+        this.containerElement = document.querySelector(".dish-list");
+    }
+
+    showList() {
+        this.containerElement.classList.toggle("dish-list--active");
     }
 
     addNewDish() {
@@ -112,7 +82,7 @@ class DishList {
         dishes.push(newDish);
         statusHandler.add("success", "The dish has been added to the list!");
 
-        const objStore = db
+        const objStore = dishListDB.db
             .transaction("dishes", "readwrite")
             .objectStore("dishes");
 
@@ -133,7 +103,7 @@ class DishList {
 
 async function renderDishesFromDBToList() {
     try {
-        db = await dbPromise;
+        db = await dishListDB.dbPromise;
         const objStore = db
             .transaction("dishes", "readwrite")
             .objectStore("dishes");
@@ -147,7 +117,6 @@ async function renderDishesFromDBToList() {
 
         for (const typeQuery of typeQueryArray) {
             typeQuery.onsuccess = function () {
-
                 typeQuery.result.forEach((dish) => {
                     const newDish = new Dish(dish.name, dish.type);
 
@@ -185,6 +154,20 @@ dishList.addDishButton.addEventListener(
     dishList.addNewDish.bind(dishList)
 );
 
-// getButton.addEventListener("click", renderDishesFromDBToList);
+getButton.addEventListener("click", () => {
+    const breakfastElements = document.querySelectorAll(
+        ".cooking-plan__meal--breakfast"
+    );
+
+    breakfastElements.forEach((breakfastEl) => {
+        console.log(breakfastEl.querySelector(".cooking-plan__dish"));
+    });
+
+    const randomIndex = Math.floor(Math.random() * dishes.length);
+});
+
+dishList.showButton.addEventListener("click", dishList.showList.bind(dishList));
+
+// -------
 
 renderDishesFromDBToList();
