@@ -138,9 +138,19 @@
         transform: translateY(-50%);
     }
 
+    &__list {
+        margin-bottom: 20px;
+    }
+
     &__title {
         text-transform: uppercase;
         font-size: $font-size-xl;
+        font-weight: 600;
+        color: $color-red;
+    }
+
+    &__item {
+        margin-left: 10px;
     }
 
 }

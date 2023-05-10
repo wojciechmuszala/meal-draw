@@ -131,9 +131,33 @@ class cookingPlan {
     constructor() {
         this.drawButtonEl = document.getElementById("draw-button");
         this.drawButtonEl.addEventListener("click", this.drawDishes);
+        this.breakfastContainerEls = document.querySelectorAll(
+            ".cooking-plan__meal--breakfast"
+        );
+        this.brunchContainerEls = document.querySelectorAll(
+            ".cooking-plan__meal--brunch"
+        );
+        this.lunchContainerEls = document.querySelectorAll(
+            ".cooking-plan__meal--lunch"
+        );
+        this.supperContainerEls = document.querySelectorAll(
+            ".cooking-plan__meal--supper"
+        );
     }
 
-    drawDishes() {}
+    drawDishes() {
+
+
+        const breakfastElements = document.querySelectorAll(
+            ".cooking-plan__meal--breakfast"
+        );
+
+        breakfastElements.forEach((breakfastEl) => {
+            console.log(breakfastEl.querySelector(".cooking-plan__dish"));
+        });
+
+        const randomIndex = Math.floor(Math.random() * dishList.dishes.length);
+    }
 }
 
 // async function declaration because database operations are async
@@ -191,15 +215,9 @@ async function renderDishesFromDBToList(list) {
 
 const dishList = new DishList();
 
-// event listeners
-// dishList.addDishButton.addEventListener(
-//     "click",
-//     dishList.addNewDish.bind(dishList)
-// );
-
 getButton.addEventListener("click", () => {
     const breakfastElements = document.querySelectorAll(
-        ".cooking-plan__meal--breakfast"
+        ".cooking-plan__meal--" + BREAKFAST_TYPE
     );
 
     breakfastElements.forEach((breakfastEl) => {
