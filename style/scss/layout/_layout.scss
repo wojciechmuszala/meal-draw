@@ -47,8 +47,6 @@
     }
 
     &__button {
-        width: 20%;
-        border-radius: 0 10px 10px 0;
     }
 
     &__status-info {
@@ -138,6 +136,19 @@
         transform: translateY(-50%);
     }
 
+    &__delete-options {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__delete-dish {
+        &--active {
+            background-color: $color-red;
+            color: $color-white;
+        }
+    }
+
     &__list {
         margin-bottom: 20px;
     }
@@ -150,7 +161,32 @@
     }
 
     &__item {
-        margin-left: 10px;
+        padding-left: 10px;
+        position: relative;
+        transition: all 0.5s ease;
+
+        &--delete-active {
+            padding-left: 30px;
+            &:hover {
+                background-color: rgba($color: $color-red, $alpha: 0.1);
+                cursor: pointer;
+            }
+        }
     }
 
+    &__delete-item-button {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        color: $color-red;
+        transition-delay: 0.3s;
+
+        &--active {
+            opacity: 1;
+            pointer-events: all;
+            transition: all 0.5s ease;
+        }
+    }
 }

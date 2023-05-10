@@ -46,18 +46,14 @@
                                 <option value="supper">Supper</option>
                             </select>
                         </div>
-                        <button
-                            id="add-new-dish-button"
-                            class="add__button btn btn__primary btn__input">
+                        <button id="add-new-dish-button" class="btn btn__add">
                             Add
                         </button>
                         <div class="add__status-info status-info"></div>
                     </div>
                 </div>
                 <div class="draw">
-                    <button
-                        id="draw-button"
-                        class="draw__button btn btn__secondary">
+                    <button id="draw-button" class="draw__button btn btn__draw">
                         Draw dishes
                     </button>
                     <div class="cooking-plan__container">
@@ -422,6 +418,18 @@
                 </div>
                 <div class="dish-list">
                     <button class="dish-list__show btn btn__oval"><</button>
+                    <div class="dish-list__delete-options">
+                        <button
+                            id="delete-dish-button"
+                            class="dish-list__delete-dish btn btn__primary">
+                            Delete dish
+                        </button>
+                        <button
+                            id="clear-dish-list-button"
+                            class="dish-list__clear-list btn btn__primary">
+                            Clear dish list
+                        </button>
+                    </div>
                     <ul id="dish-list-breakfast" class="dish-list__list">
                         <li class="dish-list__title">Breakfasts</li>
                     </ul>

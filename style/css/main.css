@@ -74,36 +74,62 @@ h3 {
 .btn {
   display: block;
   text-align: center;
-  padding: 12px 24px;
+  padding: 10px 20px;
 }
 
 .btn__primary {
   background-color: #222;
-  border: 1px solid #222;
+  background-color: #222;
   -webkit-box-shadow: 3px 3px 12px -3px #42445a;
           box-shadow: 3px 3px 12px -3px #42445a;
+  border: 1px solid #222;
+  border-left: none;
+  font-size: 16px;
+  text-transform: uppercase;
   color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   text-transform: uppercase;
   -webkit-transition: 0.2s all ease;
   transition: 0.2s all ease;
 }
 
-.btn__primary:hover {
+.btn__add {
+  width: 20%;
+  padding: 5px 8px;
+  background-color: #222;
+  -webkit-box-shadow: 3px 3px 12px -3px #42445a;
+          box-shadow: 3px 3px 12px -3px #42445a;
+  border: 1px solid #222;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-transform: none;
+  -webkit-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.btn__add:hover {
   letter-spacing: 1.5px;
   -webkit-box-shadow: 3px 3px 20px -3px #42445a;
           box-shadow: 3px 3px 20px -3px #42445a;
 }
 
-.btn__primary:active {
+.btn__add:active {
   letter-spacing: 2.5px;
   background-color: #888;
 }
 
-.btn__secondary {
+.btn__draw {
   background-color: #ac1b1b;
   border: 1px solid #ac1b1b;
   -webkit-box-shadow: 3px 3px 12px -3px #42445a;
           box-shadow: 3px 3px 12px -3px #42445a;
+  padding: 12px 24px;
   font-size: 30px;
   color: #fff;
   text-transform: uppercase;
@@ -112,26 +138,16 @@ h3 {
   transition: 0.2s all ease;
 }
 
-.btn__secondary:hover {
+.btn__draw:hover {
   letter-spacing: 3.3px;
   -webkit-box-shadow: 3px 3px 20px -3px #42445a;
           box-shadow: 3px 3px 20px -3px #42445a;
 }
 
-.btn__secondary:active {
+.btn__draw:active {
   letter-spacing: 2.5px;
   -webkit-box-shadow: 3px 3px 12px -3px #42445a;
           box-shadow: 3px 3px 12px -3px #42445a;
-}
-
-.btn__input {
-  padding: 5px 8px;
-  border-left: none;
-  border-radius: 0;
-  font-size: 16px;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  text-transform: none;
 }
 
 .btn__oval {
@@ -193,11 +209,6 @@ h3 {
 
 .add__input--select {
   font-weight: 600;
-}
-
-.add__button {
-  width: 20%;
-  border-radius: 0 10px 10px 0;
 }
 
 .add__status-info {
@@ -288,6 +299,19 @@ h3 {
           transform: translateY(-50%);
 }
 
+.dish-list__delete-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.dish-list__delete-dish--active {
+  background-color: #ac1b1b;
+  color: #fff;
+}
+
 .dish-list__list {
   margin-bottom: 20px;
 }
@@ -300,7 +324,37 @@ h3 {
 }
 
 .dish-list__item {
-  margin-left: 10px;
+  padding-left: 10px;
+  position: relative;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.dish-list__item--delete-active {
+  padding-left: 30px;
+}
+
+.dish-list__item--delete-active:hover {
+  background-color: rgba(172, 27, 27, 0.1);
+  cursor: pointer;
+}
+
+.dish-list__delete-item-button {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  color: #ac1b1b;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+.dish-list__delete-item-button--active {
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 @media screen and (min-width: 767px) {

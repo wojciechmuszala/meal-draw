@@ -44,6 +44,10 @@ class StatusHandler {
 }
 
 // dish list class
+// TODO:
+// [ ] database operations
+// [ ] delete item from list
+// [ ] clear list (confirmation modal?)
 class DishList {
     constructor() {
         this.dishes = [];
@@ -55,12 +59,33 @@ class DishList {
         );
         this.showButtonEl = document.querySelector(".dish-list__show");
         this.showButtonEl.addEventListener("click", this.showList.bind(this));
+        this.deleteDishButtonEl = document.getElementById("delete-dish-button");
+        this.deleteDishButtonEl.addEventListener(
+            "click",
+            this.showDeleteOption.bind(this)
+        );
     }
 
+    // check if the dish has already been added
     isDishOnList(dish) {
         return this.dishes.some((dishOnList) => {
+            //JSON.stringify for reading from database
             return JSON.stringify(dishOnList) === JSON.stringify(dish);
         });
+    }
+
+    //create new <li> element on list
+    createDishElement(dishName, dishType) {
+        const newDishElement = document.createElement("li");
+        newDishElement.classList.add("dish-list__item");
+        newDishElement.innerHTML = dishName;
+        let dishListElement = document.getElementById(`dish-list-${dishType}`);
+        dishListElement.append(newDishElement);
+
+        const deleteDishButton = document.createElement("span");
+        deleteDishButton.classList.add("dish-list__delete-item-button");
+        deleteDishButton.innerHTML = "×";
+        newDishElement.append(deleteDishButton);
     }
 
     // add new dish to list
@@ -114,12 +139,34 @@ class DishList {
         statusHandler.add("success", "The dish has been added to the list!");
 
         //creating new dish element in dish list container
-        const newDishElement = document.createElement("li");
-        newDishElement.classList.add("dish-list__item");
-        newDishElement.innerHTML = dishName;
-        let dishListElement = document.getElementById(`dish-list-${dishType}`);
-        dishListElement.append(newDishElement);
+        this.createDishElement(dishName, dishType);
     }
+
+    showDeleteOption() {
+        this.deleteDishButtonEl.classList.toggle(
+            "dish-list__delete-dish--active"
+        );
+        if (
+            this.deleteDishButtonEl.classList.contains(
+                "dish-list__delete-dish--active"
+            )
+        ) {
+            this.deleteDishButtonEl.innerHTML = "Cancel deletion";
+        } else {
+            this.deleteDishButtonEl.innerHTML = "Delete dish";
+        }
+
+        const dishListEls = document.querySelectorAll(".dish-list__item");
+
+        dishListEls.forEach((dish) => {
+            dish.classList.toggle("dish-list__item--delete-active");
+            dish.querySelector(
+                ".dish-list__delete-item-button"
+            ).classList.toggle("dish-list__delete-item-button--active");
+        });
+    }
+
+    clearDishList() {}
 
     // show list container element
     showList() {
@@ -146,8 +193,6 @@ class cookingPlan {
     }
 
     drawDishes() {
-
-
         const breakfastElements = document.querySelectorAll(
             ".cooking-plan__meal--breakfast"
         );
@@ -161,7 +206,7 @@ class cookingPlan {
 }
 
 // async function declaration because database operations are async
-// TODO: add render fucntion to DishList class + use class isDishOnList in this fct
+// FIXME: add render fucntion to DishList class + use class isDishOnList in this fct
 function isDishOnList(dish, list) {
     return list.some((dishOnList) => {
         return JSON.stringify(dishOnList) === JSON.stringify(dish);
@@ -194,17 +239,11 @@ async function renderDishesFromDBToList(list) {
                         return;
                     }
 
-                    // adding dish to dish array
+                    // adding dish to dishes array
                     list.dishes.push(newDish);
 
                     //creating new dish element in currently searched dish type list container
-                    const newDishElement = document.createElement("li");
-                    newDishElement.classList.add("dish-list__item");
-                    newDishElement.innerHTML = newDish.name;
-                    let dishListElement = document.getElementById(
-                        `dish-list-${newDish.type}`
-                    );
-                    dishListElement.append(newDishElement);
+                    dishList.createDishElement(newDish.name, newDish.type);
                 });
             };
         }
