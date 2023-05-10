@@ -11,13 +11,6 @@ const MATH_RANDOM_MULTIPLIER = 10000000000000000;
 
 //other declarations
 const getButton = document.getElementById("draw-button");
-// let dishes = [];
-
-function isDishOnList(dish, list) {
-    return list.some((dishOnList) => {
-        return JSON.stringify(dishOnList) === JSON.stringify(dish);
-    });
-}
 
 //dish object class
 class Dish {
@@ -54,15 +47,20 @@ class StatusHandler {
 class DishList {
     constructor() {
         this.dishes = [];
-        const self = this;
+        this.listContainerEl = document.querySelector(".dish-list");
         this.addDishButton = document.getElementById("add-new-dish-button");
-        this.showButton = document.querySelector(".dish-list__show");
-        this.containerElement = document.querySelector(".dish-list");
+        this.addDishButton.addEventListener(
+            "click",
+            this.addNewDish.bind(this)
+        );
+        this.showButtonEl = document.querySelector(".dish-list__show");
+        this.showButtonEl.addEventListener("click", this.showList.bind(this));
     }
 
-    // show list container element
-    showList() {
-        this.containerElement.classList.toggle("dish-list--active");
+    isDishOnList(dish) {
+        return this.dishes.some((dishOnList) => {
+            return JSON.stringify(dishOnList) === JSON.stringify(dish);
+        });
     }
 
     // add new dish to list
@@ -89,7 +87,7 @@ class DishList {
         const newDish = new Dish(dishName, dishType);
 
         // check if the dish has already been added + error handling
-        if (isDishOnList(newDish, this.dishes)) {
+        if (this.isDishOnList(newDish)) {
             statusHandler.add(
                 "error",
                 "Oops! Same dish of the same type is already on the list!"
@@ -122,9 +120,29 @@ class DishList {
         let dishListElement = document.getElementById(`dish-list-${dishType}`);
         dishListElement.append(newDishElement);
     }
+
+    // show list container element
+    showList() {
+        this.listContainerEl.classList.toggle("dish-list--active");
+    }
+}
+
+class cookingPlan {
+    constructor() {
+        this.drawButtonEl = document.getElementById("draw-button");
+        this.drawButtonEl.addEventListener("click", this.drawDishes);
+    }
+
+    drawDishes() {}
 }
 
 // async function declaration because database operations are async
+// TODO: add render fucntion to DishList class + use class isDishOnList in this fct
+function isDishOnList(dish, list) {
+    return list.some((dishOnList) => {
+        return JSON.stringify(dishOnList) === JSON.stringify(dish);
+    });
+}
 async function renderDishesFromDBToList(list) {
     try {
         // preparing the database for reading + creating indexes for searching the database
@@ -174,10 +192,10 @@ async function renderDishesFromDBToList(list) {
 const dishList = new DishList();
 
 // event listeners
-dishList.addDishButton.addEventListener(
-    "click",
-    dishList.addNewDish.bind(dishList)
-);
+// dishList.addDishButton.addEventListener(
+//     "click",
+//     dishList.addNewDish.bind(dishList)
+// );
 
 getButton.addEventListener("click", () => {
     const breakfastElements = document.querySelectorAll(
@@ -188,10 +206,8 @@ getButton.addEventListener("click", () => {
         console.log(breakfastEl.querySelector(".cooking-plan__dish"));
     });
 
-    const randomIndex = Math.floor(Math.random() * dishes.length);
+    const randomIndex = Math.floor(Math.random() * dishList.dishes.length);
 });
-
-dishList.showButton.addEventListener("click", dishList.showList.bind(dishList));
 
 // -------
 
