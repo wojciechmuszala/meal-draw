@@ -50,6 +50,7 @@ class StatusHandler {
 // [ ] clear list (confirmation modal?)
 class DishList {
     constructor() {
+        const self = this;
         this.dishes = [];
         this.listContainerEl = document.querySelector(".dish-list");
         this.addDishButton = document.getElementById("add-new-dish-button");
@@ -142,6 +143,51 @@ class DishList {
         this.createDishElement(dishName, dishType);
     }
 
+    // async function declaration because database operations are async and crated as promise
+    async renderDishesFromDBToList() {
+        try {
+            console.log("robie sie");
+            const self = this;
+            db = await dishListDB.dbPromise;
+            const objStore = db
+                .transaction("dishes", "readwrite")
+                .objectStore("dishes");
+            const typeIndex = objStore.index("type");
+            const typeQueryArray = [
+                typeIndex.getAll([BREAKFAST_TYPE]),
+                typeIndex.getAll([BRUCH_TYPE]),
+                typeIndex.getAll([LUNCH_TYPE]),
+                typeIndex.getAll([SUPPER_TYPE]),
+            ];
+
+            // loop through all type of dishes in database
+            for (const typeQuery of typeQueryArray) {
+                typeQuery.onsuccess = function () {
+                    // loop through all dishes of currently searched type
+                    typeQuery.result.forEach((dish) => {
+                        const newDish = new Dish(dish.name, dish.type);
+
+                        // check if the dish has already been added
+                        if (self.isDishOnList(newDish)) {
+                            return;
+                        }
+
+                        // adding dish to dishes array
+                        self.dishes.push(newDish);
+
+                        //creating new dish element in currently searched dish type list container
+                        self.createDishElement(newDish.name, newDish.type);
+                    });
+                };
+            }
+
+            //add new attribute "rendered"
+            this.listContainerEl.setAttribute("rendered", "true");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     showDeleteOption() {
         this.deleteDishButtonEl.classList.toggle(
             "dish-list__delete-dish--active"
@@ -166,10 +212,15 @@ class DishList {
         });
     }
 
+    deleteDishFromList() {}
+
     clearDishList() {}
 
     // show list container element
     showList() {
+        if (this.listContainerEl.getAttribute("rendered") === "false") {
+            this.renderDishesFromDBToList();
+        }
         this.listContainerEl.classList.toggle("dish-list--active");
     }
 }
@@ -205,53 +256,6 @@ class cookingPlan {
     }
 }
 
-// async function declaration because database operations are async
-// FIXME: add render fucntion to DishList class + use class isDishOnList in this fct
-function isDishOnList(dish, list) {
-    return list.some((dishOnList) => {
-        return JSON.stringify(dishOnList) === JSON.stringify(dish);
-    });
-}
-async function renderDishesFromDBToList(list) {
-    try {
-        // preparing the database for reading + creating indexes for searching the database
-        db = await dishListDB.dbPromise;
-        const objStore = db
-            .transaction("dishes", "readwrite")
-            .objectStore("dishes");
-        const typeIndex = objStore.index("type");
-        const typeQueryArray = [
-            typeIndex.getAll([BREAKFAST_TYPE]),
-            typeIndex.getAll([BRUCH_TYPE]),
-            typeIndex.getAll([LUNCH_TYPE]),
-            typeIndex.getAll([SUPPER_TYPE]),
-        ];
-
-        // loop through all type of dishes in database
-        for (const typeQuery of typeQueryArray) {
-            typeQuery.onsuccess = function () {
-                // loop through all dishes of currently searched type
-                typeQuery.result.forEach((dish) => {
-                    const newDish = new Dish(dish.name, dish.type);
-
-                    // check if the dish has already been added
-                    if (isDishOnList(newDish, list.dishes)) {
-                        return;
-                    }
-
-                    // adding dish to dishes array
-                    list.dishes.push(newDish);
-
-                    //creating new dish element in currently searched dish type list container
-                    dishList.createDishElement(newDish.name, newDish.type);
-                });
-            };
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 const dishList = new DishList();
 
 getButton.addEventListener("click", () => {
@@ -265,7 +269,3 @@ getButton.addEventListener("click", () => {
 
     const randomIndex = Math.floor(Math.random() * dishList.dishes.length);
 });
-
-// -------
-
-renderDishesFromDBToList(dishList);
