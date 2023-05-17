@@ -4,13 +4,10 @@ let db;
 
 // declaration of constants
 const BREAKFAST_TYPE = "breakfast";
-const BRUCH_TYPE = "brunch";
+const BRUNCH_TYPE = "brunch";
 const LUNCH_TYPE = "lunch";
 const SUPPER_TYPE = "supper";
 const MATH_RANDOM_MULTIPLIER = 10000000000000000;
-
-//other declarations
-const getButton = document.getElementById("draw-button");
 
 //dish object class
 class Dish {
@@ -44,10 +41,6 @@ class StatusHandler {
 }
 
 // dish list class
-// TODO:
-// [ ] database operations
-// [ ] delete item from list
-// [ ] clear list (confirmation modal?)
 class DishList {
     constructor() {
         const self = this;
@@ -156,43 +149,48 @@ class DishList {
     }
 
     // read from indexedDB and add to dishList in DOM
-    renderDishesFromDBToList() {
-        console.log("robie sie");
-        const self = this;
-        const objStore = dishListDB.db
-            .transaction("dishes", "readwrite")
-            .objectStore("dishes");
-        const typeIndex = objStore.index("type");
-        const typeQueryArray = [
-            typeIndex.getAll([BREAKFAST_TYPE]),
-            typeIndex.getAll([BRUCH_TYPE]),
-            typeIndex.getAll([LUNCH_TYPE]),
-            typeIndex.getAll([SUPPER_TYPE]),
-        ];
+    async renderDishesFromDBToList() {
+        try {
+            const self = this;
+            const db = await dishListDB.dbPromise;
+            const objStore = db
+                .transaction("dishes", "readwrite")
+                .objectStore("dishes");
+            const typeIndex = objStore.index("type");
+            const typeQueryArray = [
+                typeIndex.getAll([BREAKFAST_TYPE]),
+                typeIndex.getAll([BRUNCH_TYPE]),
+                typeIndex.getAll([LUNCH_TYPE]),
+                typeIndex.getAll([SUPPER_TYPE]),
+            ];
 
-        // loop through all type of dishes in database
-        for (const typeQuery of typeQueryArray) {
-            typeQuery.onsuccess = function () {
-                // loop through all dishes of currently searched type
-                typeQuery.result.forEach((dish) => {
-                    const newDish = new Dish(dish.name, dish.type);
+            // loop through all type of dishes in database
+            for (const typeQuery of typeQueryArray) {
+                typeQuery.onsuccess = function () {
+                    // loop through all dishes of currently searched type
+                    typeQuery.result.forEach((dish) => {
+                        const newDish = new Dish(dish.name, dish.type);
 
-                    // check if the dish has already been added
-                    if (self.isDishOnList(newDish)) {
-                        return;
-                    }
+                        // check if the dish has already been added
+                        if (self.isDishOnList(newDish)) {
+                            return;
+                        }
 
-                    // adding dish to dishes array
-                    self.dishes.push(newDish);
+                        // adding dish to dishes array
+                        self.dishes.push(newDish);
 
-                    //creating new dish element in currently searched dish type list container
-                    self.createDishElement(newDish.name, newDish.type, dish.id);
-                });
-            };
+                        //creating new dish element in currently searched dish type list container
+                        self.createDishElement(
+                            newDish.name,
+                            newDish.type,
+                            dish.id
+                        );
+                    });
+                };
+            }
+        } catch (error) {
+            console.log(error);
         }
-
-        //add new attribute "rendered"
-        this.listContainerEl.setAttribute("data-rendered", "true");
     }
 
     showDeleteOption() {
@@ -277,17 +275,14 @@ class DishList {
 
     // show list container element
     showList() {
-        if (this.listContainerEl.getAttribute("data-rendered") === "false") {
-            this.renderDishesFromDBToList();
-        }
         this.listContainerEl.classList.toggle("dish-list--active");
     }
 }
 
-class cookingPlan {
+class CookingPlan {
     constructor() {
         this.drawButtonEl = document.getElementById("draw-button");
-        this.drawButtonEl.addEventListener("click", this.drawDishes);
+        // this.drawButtonEl.addEventListener("click", this.drawDishes.bind(this));
         this.breakfastContainerEls = document.querySelectorAll(
             ".cooking-plan__meal--breakfast"
         );
@@ -302,29 +297,51 @@ class cookingPlan {
         );
     }
 
-    drawDishes() {
-        const breakfastElements = document.querySelectorAll(
-            ".cooking-plan__meal--breakfast"
-        );
+    drawDishes(list) {
+        const dishTypeArray = [
+            BREAKFAST_TYPE,
+            BRUNCH_TYPE,
+            LUNCH_TYPE,
+            SUPPER_TYPE,
+        ];
 
-        breakfastElements.forEach((breakfastEl) => {
-            console.log(breakfastEl.querySelector(".cooking-plan__dish"));
+        //FIXME: rename variables
+        for (const dishType of dishTypeArray) {
+            const onlyOneTypeArray = list.dishes.filter((dish) => {
+                return dish.type === dishType;
+            });
+
+            const dishTypeElements = document.querySelectorAll(
+                ".cooking-plan__meal--" + dishType
+            );
+            dishTypeElements.forEach((dishTypeEl) => {
+                const dishTypeRandomIndex = Math.floor(
+                    Math.random() * onlyOneTypeArray.length
+                );
+                const dishContainer = dishTypeEl.querySelector(
+                    ".cooking-plan__dish"
+                );
+                if (onlyOneTypeArray.length > 0) {
+                    dishContainer.innerHTML =
+                        onlyOneTypeArray[dishTypeRandomIndex].name;
+                } else {
+                    dishContainer.innerHTML = " - ";
+                }
+            });
+        }
+    }
+}
+class App {
+    static init() {
+        const dishList = new DishList();
+        const cookingPlan = new CookingPlan();
+
+        dishList.renderDishesFromDBToList();
+
+        cookingPlan.drawButtonEl.addEventListener("click", function () {
+            cookingPlan.drawDishes(dishList);
         });
-
-        const randomIndex = Math.floor(Math.random() * dishList.dishes.length);
     }
 }
 
-const dishList = new DishList();
-
-getButton.addEventListener("click", () => {
-    const breakfastElements = document.querySelectorAll(
-        ".cooking-plan__meal--" + BREAKFAST_TYPE
-    );
-
-    breakfastElements.forEach((breakfastEl) => {
-        console.log(breakfastEl.querySelector(".cooking-plan__dish"));
-    });
-
-    const randomIndex = Math.floor(Math.random() * dishList.dishes.length);
-});
+App.init();
