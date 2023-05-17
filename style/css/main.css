@@ -9,6 +9,9 @@ select {
   padding: 8px 12px;
   border: 1px solid #222;
   background-color: #fff;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .status-info {
@@ -201,6 +204,7 @@ h3 {
 
 .add__input {
   width: 100%;
+  height: 100%;
 }
 
 .add__input--input {
@@ -209,6 +213,7 @@ h3 {
 
 .add__input--select {
   font-weight: 600;
+  border-radius: 0;
 }
 
 .add__status-info {
@@ -272,7 +277,7 @@ h3 {
 }
 
 .cooking-plan__dish {
-  text-align: center;
+  text-align: right;
 }
 
 .dish-list {
@@ -289,6 +294,12 @@ h3 {
 
 .dish-list--active {
   right: 0;
+}
+
+.dish-list__wrapper {
+  max-height: calc(100vh - 120px);
+  overflow-y: scroll;
+  scrollbar-color: #ac1b1b transparent;
 }
 
 .dish-list__show {
