@@ -65,6 +65,13 @@ class DishList {
             "click",
             this.showDeleteOption.bind(this)
         );
+        this.clearDishListButtonEl = document.getElementById(
+            "clear-dish-list-button"
+        );
+        this.clearDishListButtonEl.addEventListener(
+            "click",
+            this.clearDishList.bind(this)
+        );
     }
 
     // check if the dish has already been added
@@ -76,10 +83,13 @@ class DishList {
     }
 
     //create new <li> element on list
-    createDishElement(dishName, dishType) {
+    createDishElement(dishName, dishType, dishId) {
         const newDishElement = document.createElement("li");
         newDishElement.classList.add("dish-list__item");
         newDishElement.innerHTML = dishName;
+        if (dishId) {
+            newDishElement.setAttribute("dish-id", dishId);
+        }
         let dishListElement = document.getElementById(`dish-list-${dishType}`);
         dishListElement.append(newDishElement);
 
@@ -97,6 +107,8 @@ class DishList {
 
         // clear previous messages
         statusHandler.reset();
+
+        const dishId = Math.random() * MATH_RANDOM_MULTIPLIER;
 
         // get dish from input
         const dishName = dishNameInput.value.trim();
@@ -131,7 +143,7 @@ class DishList {
 
         // adding dish to database
         objStore.add({
-            id: Math.random() * MATH_RANDOM_MULTIPLIER,
+            id: dishId,
             name: dishName,
             type: dishType,
         });
@@ -140,52 +152,47 @@ class DishList {
         statusHandler.add("success", "The dish has been added to the list!");
 
         //creating new dish element in dish list container
-        this.createDishElement(dishName, dishType);
+        this.createDishElement(dishName, dishType, dishId);
     }
 
-    // async function declaration because database operations are async and crated as promise
-    async renderDishesFromDBToList() {
-        try {
-            console.log("robie sie");
-            const self = this;
-            db = await dishListDB.dbPromise;
-            const objStore = db
-                .transaction("dishes", "readwrite")
-                .objectStore("dishes");
-            const typeIndex = objStore.index("type");
-            const typeQueryArray = [
-                typeIndex.getAll([BREAKFAST_TYPE]),
-                typeIndex.getAll([BRUCH_TYPE]),
-                typeIndex.getAll([LUNCH_TYPE]),
-                typeIndex.getAll([SUPPER_TYPE]),
-            ];
+    // read from indexedDB and add to dishList in DOM
+    renderDishesFromDBToList() {
+        console.log("robie sie");
+        const self = this;
+        const objStore = dishListDB.db
+            .transaction("dishes", "readwrite")
+            .objectStore("dishes");
+        const typeIndex = objStore.index("type");
+        const typeQueryArray = [
+            typeIndex.getAll([BREAKFAST_TYPE]),
+            typeIndex.getAll([BRUCH_TYPE]),
+            typeIndex.getAll([LUNCH_TYPE]),
+            typeIndex.getAll([SUPPER_TYPE]),
+        ];
 
-            // loop through all type of dishes in database
-            for (const typeQuery of typeQueryArray) {
-                typeQuery.onsuccess = function () {
-                    // loop through all dishes of currently searched type
-                    typeQuery.result.forEach((dish) => {
-                        const newDish = new Dish(dish.name, dish.type);
+        // loop through all type of dishes in database
+        for (const typeQuery of typeQueryArray) {
+            typeQuery.onsuccess = function () {
+                // loop through all dishes of currently searched type
+                typeQuery.result.forEach((dish) => {
+                    const newDish = new Dish(dish.name, dish.type);
 
-                        // check if the dish has already been added
-                        if (self.isDishOnList(newDish)) {
-                            return;
-                        }
+                    // check if the dish has already been added
+                    if (self.isDishOnList(newDish)) {
+                        return;
+                    }
 
-                        // adding dish to dishes array
-                        self.dishes.push(newDish);
+                    // adding dish to dishes array
+                    self.dishes.push(newDish);
 
-                        //creating new dish element in currently searched dish type list container
-                        self.createDishElement(newDish.name, newDish.type);
-                    });
-                };
-            }
-
-            //add new attribute "rendered"
-            this.listContainerEl.setAttribute("rendered", "true");
-        } catch (error) {
-            console.log(error);
+                    //creating new dish element in currently searched dish type list container
+                    self.createDishElement(newDish.name, newDish.type, dish.id);
+                });
+            };
         }
+
+        //add new attribute "rendered"
+        this.listContainerEl.setAttribute("data-rendered", "true");
     }
 
     showDeleteOption() {
@@ -210,15 +217,67 @@ class DishList {
                 ".dish-list__delete-item-button"
             ).classList.toggle("dish-list__delete-item-button--active");
         });
+
+        this.deleteDishFromList();
     }
 
-    deleteDishFromList() {}
+    deleteDishFromList() {
+        const self = this;
+        this.listContainerEl.addEventListener("click", (event) => {
+            if (
+                event.target.classList.contains(
+                    "dish-list__item--delete-active"
+                )
+            ) {
+                const dishId = event.target.getAttribute("dish-id");
+                const dishName = event.target.textContent.split("×").shift();
+                const dishType = event.target
+                    .closest(".dish-list__list")
+                    .id.split("dish-list-")
+                    .pop();
 
-    clearDishList() {}
+                const objStore = dishListDB.db
+                    .transaction("dishes", "readwrite")
+                    .objectStore("dishes");
+
+                // deleting dish from database and list (dishId converted to int)
+                const dbRequest = objStore.delete(+dishId);
+
+                dbRequest.onsuccess = function () {
+                    const dishToDeleteId = self.dishes.findIndex((dish) => {
+                        return dish.name === dishName && dish.type === dishType;
+                    });
+                    self.dishes.splice(dishToDeleteId, dishToDeleteId);
+                    event.target.remove();
+                };
+            }
+        });
+    }
+
+    //TODO: confirmation modal
+    clearDishList() {
+        const self = this;
+
+        const objStore = dishListDB.db
+            .transaction("dishes", "readwrite")
+            .objectStore("dishes");
+
+        //clear indexedDB
+        const dbRequest = objStore.clear();
+
+        dbRequest.onsuccess = function () {
+            //clear dishes array
+            self.dishes.splice(0);
+            //remove dish elements in DOM
+            document.querySelectorAll(".dish-list__item").forEach((dish) => {
+                dish.remove();
+            });
+        };
+    }
 
     // show list container element
     showList() {
-        if (this.listContainerEl.getAttribute("rendered") === "false") {
+        if (this.listContainerEl.getAttribute("data-rendered") === "false") {
             this.renderDishesFromDBToList();
         }
         this.listContainerEl.classList.toggle("dish-list--active");

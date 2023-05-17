@@ -6,26 +6,23 @@ export const indexedDB =
     window.shimIndexedDB;
 export const dbRequest = indexedDB.open("DishesDatabase", 1);
 export let db;
-export const dbPromise = new Promise((resolve, reject) => {
-    dbRequest.onerror = function (event) {
-        reject(console.error(event));
-    };
 
-    dbRequest.onupgradeneeded = function (event) {
-        // db = event.target.result;
-        db = dbRequest.result;
-        const objStore = db.createObjectStore("dishes", { keyPath: "id" });
+dbRequest.onerror = function (event) {
+    console.error(event);
+};
 
-        objStore.createIndex("type", ["type"], { unique: false });
-        objStore.createIndex("name_and_type", ["name", "type"], {
-            unique: false,
-        });
-    };
+dbRequest.onupgradeneeded = function (event) {
+    // db = event.target.result;
+    db = dbRequest.result;
+    const objStore = db.createObjectStore("dishes", { keyPath: "id" });
 
-    dbRequest.onsuccess = function (event) {
-        // db = event.target.result;
-        db = dbRequest.result;
+    objStore.createIndex("type", ["type"], { unique: false });
+    objStore.createIndex("name_and_type", ["name", "type"], {
+        unique: false,
+    });
+};
 
-        resolve(db);
-    };
-});
+dbRequest.onsuccess = function (event) {
+    // db = event.target.result;
+    db = dbRequest.result;
+};
