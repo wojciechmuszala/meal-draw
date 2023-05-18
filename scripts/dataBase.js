@@ -7,6 +7,7 @@ export const indexedDB =
 export const dbRequest = indexedDB.open("DishesDatabase", 1);
 export let db;
 
+console.log(indexedDB);
 export const dbPromise = new Promise((resolve, reject) => {
     dbRequest.onerror = function (event) {
         reject(console.error(event));
@@ -14,6 +15,7 @@ export const dbPromise = new Promise((resolve, reject) => {
 
     dbRequest.onupgradeneeded = function (event) {
         // db = event.target.result;
+        console.log("tutaj");
         db = dbRequest.result;
         const objStore = db.createObjectStore("dishes", { keyPath: "id" });
 
@@ -21,12 +23,13 @@ export const dbPromise = new Promise((resolve, reject) => {
         objStore.createIndex("name_and_type", ["name", "type"], {
             unique: false,
         });
+
+        resolve(db);
     };
 
     dbRequest.onsuccess = function (event) {
         // db = event.target.result;
         db = dbRequest.result;
-
         resolve(db);
     };
 });

@@ -29,6 +29,74 @@ select {
   color: #dc4c45;
 }
 
+.modal {
+  display: none;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(34, 34, 34, 0.5);
+}
+
+.modal--active {
+  display: block;
+}
+
+.modal__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 500px;
+  border: 5px solid #222;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 3px 12px -3px #42445a;
+          box-shadow: 3px 3px 12px -3px #42445a;
+}
+
+.modal__header {
+  position: relative;
+}
+
+.modal__header-content {
+  padding: 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  right: 0;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.modal__body {
+  min-height: 100px;
+  padding: 20px;
+}
+
+.modal__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  gap: 20px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -159,6 +227,21 @@ h3 {
   background-color: #ac1b1b;
   border-radius: 100vmax 0 0 100vmax;
   border: 1px solid #222;
+}
+
+.btn__modal {
+  width: 100px;
+  border: none;
+}
+
+.btn__approve {
+  background-color: #ac1b1b;
+  color: #fff;
+}
+
+.btn__deny {
+  background-color: #ddd;
+  color: #222;
 }
 
 .app {

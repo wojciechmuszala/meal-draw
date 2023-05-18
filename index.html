@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Wojciech Muszala" />
         <title>Meal Draw App</title>
+        <base href="." />
+        <link rel="shortcut icon" href="images/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -15,6 +17,28 @@
         <script src="scripts/main.js" defer type="module"></script>
     </head>
     <body>
+        <div class="modal">
+            <div class="modal__wrapper">
+                <div class="modal__header">
+                    <div class="modal__header-content">Tytul</div>
+                    <span class="modal__close">×</span>
+                </div>
+                <div class="modal__body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Aperiam ipsum asperiores perferendis aliquam numquam
+                    obcaecati molestiae similique ipsam optio quasi.
+                </div>
+                <div class="modal__footer">
+                    <button class="btn btn__modal btn__deny modal__deny-button">
+                        No
+                    </button>
+                    <button
+                        class="btn btn__modal btn__approve modal__approve-button">
+                        Yes
+                    </button>
+                </div>
+            </div>
+        </div>
         <section class="app">
             <div class="app__container">
                 <h1 class="app__name">Meal draw</h1>

@@ -18,7 +18,7 @@
     }
 
     // &__secondary {
-        
+
     // }
 
     &__add {
@@ -75,5 +75,29 @@
         background-color: $color-red;
         border-radius: 100vmax 0 0 100vmax;
         border: 1px solid $color-dark;
+    }
+
+    &__modal {
+        width: 100px;
+        // border-radius: 10px;
+        border: none;
+
+        &::hover {
+        }
+
+        &::active {
+        }
+
+
+    }
+
+    &__approve {
+        background-color: $color-red;
+        color: $color-white;
+    }
+
+    &__deny {
+        background-color: $color-light;
+        color: $color-dark;
     }
 }
