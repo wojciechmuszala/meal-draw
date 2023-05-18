@@ -10,7 +10,13 @@ export let db;
 console.log(indexedDB);
 export const dbPromise = new Promise((resolve, reject) => {
     dbRequest.onerror = function (event) {
-        reject(console.error(event));
+        function errorHandling() {
+            console.error(event);
+            alert(
+                "The database has not been created - the application will not work properly. If you use the private browser mode, the data storage functionality is disabled."
+            );
+        }
+        reject(errorHandling());
     };
 
     dbRequest.onupgradeneeded = function (event) {
