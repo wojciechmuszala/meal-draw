@@ -1,6 +1,5 @@
 //data base based on indexedDB import form other file
 import * as dishListDB from "./dishListDB.js";
-let db;
 
 // declaration of constants
 const BREAKFAST_TYPE = "breakfast";
@@ -166,7 +165,7 @@ class DishList {
 
             // loop through all type of dishes in database
             for (const typeQuery of typeQueryArray) {
-                typeQuery.onsuccess = function () {
+                typeQuery.onsuccess = function (event) {
                     // loop through all dishes of currently searched type
                     typeQuery.result.forEach((dish) => {
                         const newDish = new Dish(dish.name, dish.type);
@@ -186,6 +185,10 @@ class DishList {
                             dish.id
                         );
                     });
+                };
+
+                typeQuery.onerror = function (event) {
+                    console.error(event);
                 };
             }
         } catch (error) {
@@ -332,7 +335,17 @@ class CookingPlan {
     }
 }
 class App {
+    static isSafariCheck() {
+        if (window.safari) {
+            alert(
+                "Safari does not allow the application to function fully - your entered data will not be remembered after refreshing the page. Please change web browser."
+            );
+        }
+    }
+
     static init() {
+        this.isSafariCheck();
+
         const dishList = new DishList();
         const cookingPlan = new CookingPlan();
 

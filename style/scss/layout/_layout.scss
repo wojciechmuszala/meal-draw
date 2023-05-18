@@ -15,6 +15,11 @@
 .add {
     margin-bottom: 60px;
 
+    &__info {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
     &__container {
         margin-bottom: 40px;
         display: flex;
