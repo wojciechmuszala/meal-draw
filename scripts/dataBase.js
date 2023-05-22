@@ -7,7 +7,6 @@ export const indexedDB =
 export const dbRequest = indexedDB.open("DishesDatabase", 1);
 export let db;
 
-console.log(indexedDB);
 export const dbPromise = new Promise((resolve, reject) => {
     dbRequest.onerror = function (event) {
         function errorHandling() {
